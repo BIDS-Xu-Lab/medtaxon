@@ -153,10 +153,6 @@ function onClickLoadSample() {
   store.loadSampleDataset();
 }
 
-function onClickHelp() {
-  // open a new tab to wiki page
-  window.open('https://github.com/BIDS-Xu-Lab/novelty-reviewer/wiki', '_blank');
-}
 
 </script>
 
@@ -342,7 +338,7 @@ function onClickHelp() {
           <Button text
               class="menu-button"
               v-tooltip.bottom="'Show the detailed user manual in a new window.'"
-              @click="onClickHelp()">
+              @click="store.showHelp()">
               <font-awesome-icon icon="fa-solid fa-book" class="menu-icon" />
               <span>
                   How-to

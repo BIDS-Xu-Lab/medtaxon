@@ -24,15 +24,16 @@ export const ai_helper = {
         let conclusion = '';
         if (p.hasOwnProperty('conclusion')) { conclusion = p.conclusion; }
 
+        // make a copy of p
+        let p_copy = JSON.parse(JSON.stringify(p));
+
+        // add the taxonomy text to the p_copy
+        p_copy.taxonomy = t;
+
         // format question
         let text = toolbox.formatString(
             tpl, 
-            {
-                title: title,
-                abstract: abstract,
-                conclusion: conclusion,
-                taxonomy: t
-            }
+            p_copy
         )
         
         return text;

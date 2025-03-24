@@ -116,9 +116,13 @@ state: () => ({
     // taxonomy
     taxonomy_file: null,
     taxonomy_text: '',
-    taxonomy_tree: null,
+    taxonomy_tree: {
+        name: 'Taxonomy',
+        children: [],
+    },
     taxonomy: [],
-    
+    current_taxonomy_node: null,
+
     /*
     taxonomy is a list of objects, each object has two fields:
     [
@@ -474,6 +478,24 @@ actions: {
     },
 
     savePromptToFile: async function() {
+        // check if prompt_file is set
+        if (!this.prompt_file) {
+            this.msg('Please load the prompt file first', 'error');
+            return;
+        }
+
+        // check if prompt_file is a file object
+        if (!this.prompt_file.hasOwnProperty('name')) {
+            this.msg('Please load the prompt file first', 'error');
+            return;
+        }
+
+        // check if llm_prompt_template is set
+        if (!this.llm_prompt_template) {
+            this.msg('Please set the prompt first', 'error');
+            return;
+        }
+
         // write back to the file
         await fs_helper.fsWriteFile(
             this.prompt_file, 
@@ -620,6 +642,18 @@ actions: {
                 store.items.push(formatted_row);
             }
         });
+    },
+    
+
+    showHelp: function() {
+        window.open('https://github.com/BIDS-Xu-Lab/novelty-reviewer/wiki', '_blank');
+    },
+
+    ///////////////////////////////////////////////////////
+    // Variable related
+    ///////////////////////////////////////////////////////
+    isLeaf(node) {
+        return !node.children || !node.children.length;
     },
 
     ///////////////////////////////////////////////////////

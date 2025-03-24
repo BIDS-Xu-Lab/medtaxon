@@ -200,16 +200,16 @@ onMounted(() => {
 <div class="menu-group">
     <div class="menu-group-box">
 
-        <Button text class="menu-button" v-tooltip.bottom="'Load samples for demo.'"
+        <!-- <Button text class="menu-button" v-tooltip.bottom="'Load samples for demo.'"
             @click="onClickLoadSampleData()">
             <i class="fa-regular fa-clone menu-icon"></i>
             <span>
                 Sample Data
             </span>
-        </Button>
+        </Button> -->
 
         <Button text class="menu-button" v-tooltip.bottom="'Show the detailed user manual in a new window.'"
-            @click="onClickHelp()">
+            @click="store.showHelp()">
             <font-awesome-icon icon="fa-solid fa-book" class="menu-icon" />
             <span>
                 How-to

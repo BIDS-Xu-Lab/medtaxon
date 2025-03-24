@@ -157,3 +157,19 @@ export const getTaxonomyItem = function(taxonomy_line) {
         description: description
     }
 }
+
+/**
+ * Cut a string to a specified length
+ * 
+ * @param {*} str current string
+ * @param {*} len the length of the string
+ * @returns cutted string
+ */
+export const cut = (str, len=42) => {
+    let _str = "" + str;
+    if (_str.length > len) {
+        return _str.substring(0, len) + "...";
+    } else {
+        return _str;
+    }
+}
